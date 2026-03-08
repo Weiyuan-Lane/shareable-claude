@@ -1,0 +1,33 @@
+{
+  "name": "my-claude-plugins",
+  "owner": {
+    "name": "Weiyuan",
+    "email": "weiyuan.boots@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "work",
+      "author": {
+        "name": "Weiyuan"
+      },
+      "source": "./plugins/work"
+    },
+    {
+      "name": "personal",
+      "version": "0.0.1",
+      "author": {
+        "name": "Weiyuan"
+      },
+      "source": "./plugins/personal"
+    },
+    {
+      "name": "friends",
+      "version": "0.1.0",
+      "author": {
+        "name": "Weiyuan"
+      },
+      "source": "./plugins/friends",
+      "description": "For my friends"
+    }
+  ]
+}
