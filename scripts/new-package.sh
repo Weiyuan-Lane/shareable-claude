@@ -56,7 +56,6 @@ jq -n --arg name "$PACKAGE_NAME" --arg author "$AUTHOR_NAME" \
       --arg version "$VERSION" --arg description "$DESCRIPTION" \
   '{
     "name": $name,
-    "version": $version,
     "author": {"name": $author}
   }
   | if $description != "" then . + {"description": $description} else . end' \
