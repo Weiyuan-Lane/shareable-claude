@@ -48,7 +48,8 @@ read -r DESCRIPTION
 # Create plugin directory
 mkdir -p "plugins/$PLUGIN_NAME/.claude-plugin" "plugins/$PLUGIN_NAME/skills" "plugins/$PLUGIN_NAME/skills/commands" "plugins/$PLUGIN_NAME/agents" "plugins/$PLUGIN_NAME/hooks"
 touch "plugins/$PLUGIN_NAME/skills/.keep" "plugins/$PLUGIN_NAME/skills/commands/.keep" "plugins/$PLUGIN_NAME/agents/.keep" "plugins/$PLUGIN_NAME/hooks/.keep"
-printf '{"mcpServers": {}}\n' > "plugins/$PLUGIN_NAME/.mcp.json"
+printf '{\n  "mcpServers": {}\n}\n' > "plugins/$PLUGIN_NAME/.mcp.json"
+printf '{}\n' > "plugins/$PLUGIN_NAME/.plugins.json"
 
 # Create plugin manifest
 jq -n --arg name "$PLUGIN_NAME" --arg author "$AUTHOR_NAME" \

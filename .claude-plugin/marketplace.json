@@ -13,14 +13,6 @@
       "source": "./plugins/work"
     },
     {
-      "name": "personal",
-      "version": "0.0.1",
-      "author": {
-        "name": "Weiyuan"
-      },
-      "source": "./plugins/personal"
-    },
-    {
       "name": "friends",
       "version": "0.1.0",
       "author": {
@@ -28,6 +20,14 @@
       },
       "source": "./plugins/friends",
       "description": "For my friends"
+    },
+    {
+      "name": "personal",
+      "version": "0.0.1",
+      "author": {
+        "name": "Weiyuan"
+      },
+      "source": "./plugins/personal"
     }
   ]
 }

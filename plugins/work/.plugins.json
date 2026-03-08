@@ -1,0 +1,9 @@
+{
+  "superpowers": {
+    "description": "A complete software development toolkit for Claude's coding agents",
+    "marketplace": {
+      "source": "obra/superpowers",
+      "designator": "superpowers-marketplace"
+    }
+  }
+}
