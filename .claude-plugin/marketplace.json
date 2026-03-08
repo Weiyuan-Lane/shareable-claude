@@ -10,7 +10,7 @@
       "author": {
         "name": "Weiyuan"
       },
-      "source": "./plugins/work"
+      "source": "./packages/work"
     },
     {
       "name": "friends",
@@ -18,7 +18,7 @@
       "author": {
         "name": "Weiyuan"
       },
-      "source": "./plugins/friends",
+      "source": "./packages/friends",
       "description": "For my friends"
     },
     {
@@ -27,7 +27,7 @@
       "author": {
         "name": "Weiyuan"
       },
-      "source": "./plugins/personal"
+      "source": "./packages/personal"
     }
   ]
 }

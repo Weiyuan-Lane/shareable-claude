@@ -3,7 +3,9 @@
 
 | Command | Description |
 |---------|-------------|
-| `make new-plugin` | Creates a new plugin with your inputs |
+| `make new-package` | Creates a new package with your inputs |
+
+###
 
 # Post sharing reference
 Reference fields for plugins - https://code.claude.com/docs/en/plugins-reference

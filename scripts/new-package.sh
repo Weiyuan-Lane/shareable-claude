@@ -8,22 +8,22 @@ if ! command -v jq &>/dev/null; then
   bash "$(dirname "$0")/utils/install-jq.sh"
 fi
 
-# Prompt for plugin name
-printf "Plugin name: "
-read -r PLUGIN_NAME
+# Prompt for package name
+printf "Package name: "
+read -r PACKAGE_NAME
 
-if [[ -z "$PLUGIN_NAME" ]]; then
-  echo "Error: plugin name cannot be empty."
+if [[ -z "$PACKAGE_NAME" ]]; then
+  echo "Error: package name cannot be empty."
   exit 1
 fi
 
 # Check if name already exists
-TAKEN=$(jq -r --arg name "$PLUGIN_NAME" \
+TAKEN=$(jq -r --arg name "$PACKAGE_NAME" \
   'any(.plugins[]; .name == $name) | if . then "yes" else "no" end' \
   "$MARKETPLACE")
 
 if [[ "$TAKEN" == "yes" ]]; then
-  echo "Error: plugin name \"$PLUGIN_NAME\" is already taken."
+  echo "Error: package name \"$PACKAGE_NAME\" is already taken."
   exit 1
 fi
 
@@ -45,14 +45,14 @@ VERSION="${VERSION:-0.0.1}"
 printf "Description (optional): "
 read -r DESCRIPTION
 
-# Create plugin directory
-mkdir -p "plugins/$PLUGIN_NAME/.claude-plugin" "plugins/$PLUGIN_NAME/skills" "plugins/$PLUGIN_NAME/skills/commands" "plugins/$PLUGIN_NAME/agents" "plugins/$PLUGIN_NAME/hooks"
-touch "plugins/$PLUGIN_NAME/skills/.keep" "plugins/$PLUGIN_NAME/skills/commands/.keep" "plugins/$PLUGIN_NAME/agents/.keep" "plugins/$PLUGIN_NAME/hooks/.keep"
-printf '{\n  "mcpServers": {}\n}\n' > "plugins/$PLUGIN_NAME/.mcp.json"
-printf '{}\n' > "plugins/$PLUGIN_NAME/.plugins.json"
+# Create packages directory
+mkdir -p "packages/$PACKAGE_NAME/.claude-plugin" "packages/$PACKAGE_NAME/skills" "packages/$PACKAGE_NAME/skills/commands" "packages/$PACKAGE_NAME/agents" "packages/$PACKAGE_NAME/hooks"
+touch "packages/$PACKAGE_NAME/skills/.keep" "packages/$PACKAGE_NAME/skills/commands/.keep" "packages/$PACKAGE_NAME/agents/.keep" "packages/$PACKAGE_NAME/hooks/.keep"
+printf '{\n  "mcpServers": {}\n}\n' > "packages/$PACKAGE_NAME/.mcp.json"
+printf '{}\n' > "packages/$PACKAGE_NAME/.plugins.json"
 
 # Create plugin manifest
-jq -n --arg name "$PLUGIN_NAME" --arg author "$AUTHOR_NAME" \
+jq -n --arg name "$PACKAGE_NAME" --arg author "$AUTHOR_NAME" \
       --arg version "$VERSION" --arg description "$DESCRIPTION" \
   '{
     "name": $name,
@@ -60,11 +60,11 @@ jq -n --arg name "$PLUGIN_NAME" --arg author "$AUTHOR_NAME" \
     "author": {"name": $author}
   }
   | if $description != "" then . + {"description": $description} else . end' \
-  > "plugins/$PLUGIN_NAME/.claude-plugin/plugin.json"
+  > "packages/$PACKAGE_NAME/.claude-plugin/plugin.json"
 
 # Add entry to marketplace.json
 TMP=$(mktemp)
-jq --arg name "$PLUGIN_NAME" \
+jq --arg name "$PACKAGE_NAME" \
    --arg author "$AUTHOR_NAME" \
    --arg version "$VERSION" \
    --arg description "$DESCRIPTION" \
@@ -72,9 +72,9 @@ jq --arg name "$PLUGIN_NAME" \
      "name": $name,
      "version": $version,
      "author": {"name": $author},
-     "source": ("./plugins/" + $name)
+     "source": ("./packages/" + $name)
    }
    | if $description != "" then . + {"description": $description} else . end]' \
    "$MARKETPLACE" > "$TMP" && mv "$TMP" "$MARKETPLACE"
 
-echo "Plugin \"$PLUGIN_NAME\" created at plugins/$PLUGIN_NAME"
+echo "Package \"$PACKAGE_NAME\" created at packages/$PACKAGE_NAME"

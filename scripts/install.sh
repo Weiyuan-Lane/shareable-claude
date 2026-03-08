@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source "$(dirname "$0")/utils/setup-plugin-vars.sh"
+source "$(dirname "$0")/utils/setup-package-vars.sh"
 
 # Read marketplace designator from marketplace.json
 MARKETPLACE_NAME=$(jq -r '.name' "$REPO_ROOT/$MARKETPLACE")
@@ -9,8 +9,8 @@ MARKETPLACE_NAME=$(jq -r '.name' "$REPO_ROOT/$MARKETPLACE")
 # Add local marketplace
 claude plugin marketplace add "$REPO_ROOT"
 
-# Install plugin
-claude plugin install --scope user "${PLUGIN_NAME}@${MARKETPLACE_NAME}"
+# Install package
+claude plugin install --scope user "${PACKAGE_NAME}@${MARKETPLACE_NAME}"
 
 # Install team plugins from .plugins.json if present
 if [[ -f "$PLUGINS_JSON" ]]; then
