@@ -10,16 +10,8 @@
       "author": {
         "name": "Weiyuan"
       },
-      "source": "./packages/work"
-    },
-    {
-      "name": "friends",
-      "version": "0.1.0",
-      "author": {
-        "name": "Weiyuan"
-      },
-      "source": "./packages/friends",
-      "description": "For my friends"
+      "source": "./packages/work",
+      "description": "Work use cases only"
     },
     {
       "name": "personal",
@@ -27,7 +19,8 @@
       "author": {
         "name": "Weiyuan"
       },
-      "source": "./packages/personal"
+      "source": "./packages/personal",
+      "description": "Load this up for my personal devices"
     }
   ]
 }

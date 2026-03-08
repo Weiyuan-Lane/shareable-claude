@@ -46,8 +46,8 @@ printf "Description (optional): "
 read -r DESCRIPTION
 
 # Create packages directory
-mkdir -p "packages/$PACKAGE_NAME/.claude-plugin" "packages/$PACKAGE_NAME/skills" "packages/$PACKAGE_NAME/skills/commands" "packages/$PACKAGE_NAME/agents" "packages/$PACKAGE_NAME/hooks"
-touch "packages/$PACKAGE_NAME/skills/.keep" "packages/$PACKAGE_NAME/skills/commands/.keep" "packages/$PACKAGE_NAME/agents/.keep" "packages/$PACKAGE_NAME/hooks/.keep"
+mkdir -p "packages/$PACKAGE_NAME/.claude-plugin" "packages/$PACKAGE_NAME/skills" "packages/$PACKAGE_NAME/commands" "packages/$PACKAGE_NAME/agents" "packages/$PACKAGE_NAME/hooks"
+touch "packages/$PACKAGE_NAME/skills/.keep" "packages/$PACKAGE_NAME/commands/.keep" "packages/$PACKAGE_NAME/agents/.keep" "packages/$PACKAGE_NAME/hooks/.keep"
 printf '{\n  "mcpServers": {}\n}\n' > "packages/$PACKAGE_NAME/.mcp.json"
 printf '{}\n' > "packages/$PACKAGE_NAME/.plugins.json"
 
